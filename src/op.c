@@ -5,7 +5,7 @@
 ** op.c
 */
 
-#include "op.h"
+#include "../include/op.h"
 
 op_t op_tab[] = {
     {"live", 1, {T_DIR}, 1, 10, "alive"},
