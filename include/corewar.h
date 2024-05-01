@@ -9,5 +9,6 @@
     #define COREWAR_H
     #include "op.h"
     #include "../lib/lib.h"
+    #include "struct.h"
 
 #endif
