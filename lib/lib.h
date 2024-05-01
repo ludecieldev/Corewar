@@ -39,4 +39,5 @@ char *my_strlowcase(char *str);
 int my_strncmp(char const *s1, char const *s2, int n);
 char *my_strncpy(char *dest, char const *src, int n);
 char *my_strupcase(char *str);
+char *my_strndup(char const *str, size_t nb);
 #endif

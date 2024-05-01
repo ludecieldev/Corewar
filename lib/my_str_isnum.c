@@ -9,7 +9,7 @@
 
 int is_num(char c)
 {
-    return (c > 47 && c < 58) || c == '-';
+    return (c > 47 && c < 58);
 }
 
 int my_str_isnum(char const *str)

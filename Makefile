@@ -6,7 +6,9 @@
 ##
 
 SRC	=	src/op.c \
-		src/main.c
+		src/main.c \
+		src/parsing/parsing.c \
+		src/parsing/setup_corewar.c
 
 OBJ	=	$(SRC:.c=.o)
 

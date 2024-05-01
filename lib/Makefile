@@ -23,7 +23,8 @@ SRC	=	my_bzero.c \
 		my_strncpy.c \
 		my_strcmp.c \
 		my_atoi.c \
-		my_strupcase.c
+		my_strupcase.c \
+		my_strndup.c
 
 OBJ	=	$(SRC:.c=.o)
 

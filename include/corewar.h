@@ -10,5 +10,6 @@
     #include "op.h"
     #include "../lib/lib.h"
     #include "struct.h"
+    #include "parsing.h"
 
 #endif
