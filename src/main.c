@@ -7,7 +7,7 @@
 
 #include "../include/corewar.h"
 
-void my_putnbr_hex(int nbr)
+static void my_putnbr_hex(int nbr)
 {
     int base_nb = 16;
     char str[100] = {0};
@@ -27,7 +27,7 @@ void my_putnbr_hex(int nbr)
     write(1, str, my_strlen(str));
 }
 
-void hex_print(unsigned char c)
+static void hex_print(unsigned char c)
 {
     int base_nb;
     char base[16] = "0123456789ABCDEF";

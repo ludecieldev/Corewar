@@ -16,7 +16,6 @@ int st_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
         process->reg[param->param[1] % REG_NUMBER] = arg;
         return 0;
     }
-    printf("%d\n", arg);
     for (int i = 0; i < 4; i++)
         *((char *)(process->pc + param->param[1] % IDX_MOD + i)) =
             ((char *)&arg)[i];
