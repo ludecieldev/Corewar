@@ -36,6 +36,7 @@ typedef char args_type_t;
 **ind always relative(ld 1,r1 put what's in the address(1+pc)into r1(4byte))
 */
     #define T_IND 4
+    #define T_DIR2 8
     #define T_LAB 8 /* LABEL */
 
 typedef struct op_s {

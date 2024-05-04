@@ -21,18 +21,18 @@ static corewar_t *init_corewar(parsing_t *parse)
     return corewar;
 }
 
-process_t *init_process(void *id)
+process_t *init_process(int id, void *mem_index)
 {
     process_t *process = malloc(sizeof(process_t));
 
     process->carry = 0;
-    process->pc = 0;
-    my_strncpy(process->reg[0], (char *)id, REG_SIZE);
+    process->pc = mem_index;
+    process->reg[0] = id;
     process->sleep = 0;
     return process;
 }
 
-static champion_t *get_champ(char *path, int id)
+static champion_t *get_champ(char *path, int id, void *mem_index)
 {
     champion_t *champ = malloc(sizeof(champion_t));
     int fd = open(path, O_RDONLY);
@@ -47,7 +47,7 @@ static champion_t *get_champ(char *path, int id)
     champ->last_live = 0;
     champ->id = id;
     champ->process_nb = 1;
-    champ->process[0] = init_process(&(champ->id));
+    champ->process[0] = init_process((int)champ->id, mem_index);
     champ->champ_code_len = read(fd, buffer, MEM_SIZE);
     champ->champ_code = malloc(champ->champ_code_len + 1);
     for (size_t i = 0; i < champ->champ_code_len; i++)
@@ -62,13 +62,14 @@ corewar_t *setup_corewar(parsing_t *parse)
     u_int mem_index = 0;
 
     for (u_int i = 0; i < corewar->champ_nb; i++) {
-        corewar->champions[i] = get_champ(parse->champion_path[i], (int)i);
+        corewar->champions[i] = get_champ(parse->champion_path[i], (int)i,
+            corewar->mem + mem_index);
         if (corewar->champions[i] == NULL)
             return NULL;
         for (size_t j = 0; j < corewar->champions[i]->champ_code_len; j++)
             *(corewar->mem + mem_index + j) =
                 corewar->champions[i]->champ_code[j];
-        corewar->champions[i]->process[0]->pc = corewar->mem + mem_index;
+        corewar->champions[i]->process[0]->pc = (corewar->mem + mem_index);
         mem_index += (u_int)((1.f / (float)corewar->champ_nb) * MEM_SIZE);
     }
     return corewar;

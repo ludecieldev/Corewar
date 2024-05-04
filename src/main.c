@@ -7,6 +7,61 @@
 
 #include "../include/corewar.h"
 
+void my_putnbr_hex(int nbr)
+{
+    int base_nb = 16;
+    char str[100] = {0};
+    int i = 0;
+    char base[16] = "0123456789ABCDEF";
+
+    if (nbr == 0) {
+        write(1, "0", 1);
+        return;
+    }
+    while (nbr != 0) {
+        str[i] = base[nbr % base_nb];
+        nbr /= base_nb;
+        i++;
+    }
+    my_revstr(str);
+    write(1, str, my_strlen(str));
+}
+
+void hex_print(unsigned char c)
+{
+    int base_nb;
+    char base[16] = "0123456789ABCDEF";
+    char str[3] = {'0', '0', 0};
+    int i = 0;
+
+    if (c == 0) {
+        write(1, "00", 2);
+        return;
+    }
+    base_nb = 16;
+    while (c != 0) {
+        str[i] = base[c % base_nb];
+        c /= base_nb;
+        i++;
+    }
+    my_revstr(str);
+    write(1, str, 2);
+}
+
+void dump_mem(char *mem)
+{
+    for (int i = 0; i < MEM_SIZE; i++) {
+        if (i % 32 == 0) {
+            my_putnbr_hex(i);
+            write(1, "\t:", 2);
+        }
+        write(1, " ", 1);
+        hex_print(mem[i]);
+        if ((i + 1) % 32 == 0)
+            write(1, "\n", 1);
+    }
+}
+
 int main(int ac, char **av)
 {
     parsing_t *parse = parsing(ac, av);
@@ -21,7 +76,6 @@ int main(int ac, char **av)
         free_parsing(parse);
         return 84;
     }
-    write(1, corewar->mem, MEM_SIZE);
     free_parsing(parse);
     return 0;
 }
