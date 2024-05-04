@@ -8,11 +8,22 @@
 SRC	=	src/op.c \
 		src/main.c \
 		src/parsing/parsing.c \
-		src/parsing/setup_corewar.c
+		src/parsing/setup_corewar.c \
+		src/arguments/get_args.c \
+		src/instructions/add_sub.c \
+		src/instructions/aff.c \
+		src/instructions/and_or_xor.c \
+		src/instructions/fork.c \
+		src/instructions/ld.c \
+		src/instructions/ldi.c \
+		src/instructions/live.c \
+		src/instructions/st.c \
+		src/instructions/sti.c \
+		src/instructions/zjmp.c \
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	+=	-Wall -Wextra -Werror
+#CFLAGS	+=	-Wall -Wextra -Werror
 CFLAGS	+=	-Ofast -fno-builtin -fno-builtin-memset -flto -march=native
 
 NAME	=	corewar

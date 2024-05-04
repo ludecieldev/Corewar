@@ -9,7 +9,7 @@
     #define STRUCT_H
     #include "corewar.h"
 
-typedef char reg_t[REG_SIZE];
+typedef int reg_t;
 
 typedef struct process {
     void *pc;
@@ -40,5 +40,10 @@ typedef struct parsing {
     char *champion_path[4];
     int dump_flag;
 } parsing_t;
+
+typedef struct parameter {
+    int param[3];
+    u_char param_info;
+} parameter_t;
 
 #endif
