@@ -20,11 +20,14 @@ SRC	=	src/op.c \
 		src/instructions/st.c \
 		src/instructions/sti.c \
 		src/instructions/zjmp.c \
+		src/corewar_loop/check_win.c \
+		src/corewar_loop/corewar_loop.c \
+		src/corewar_loop/get_adress.c \
 
 OBJ	=	$(SRC:.c=.o)
 
 #CFLAGS	+=	-Wall -Wextra -Werror
-CFLAGS	+=	-Ofast -fno-builtin -fno-builtin-memset -flto -march=native
+CFLAGS	+=	-Ofast -fno-builtin -fno-builtin-memset -flto -march=native -g
 
 NAME	=	corewar
 

@@ -7,6 +7,19 @@
 
 #include "lib.h"
 
+char *my_strncpy_dumb(char *dest, char const *src, int n)
+{
+    int i;
+
+    i = 0;
+    while (i < n) {
+        dest[i] = src[n - i - 1];
+        i++;
+    }
+    dest[i] = '\0';
+    return dest;
+}
+
 char *my_strncpy(char *dest, char const *src, int n)
 {
     int i;

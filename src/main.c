@@ -76,6 +76,7 @@ int main(int ac, char **av)
         free_parsing(parse);
         return 84;
     }
+    corewar_loop(corewar);
     free_parsing(parse);
     return 0;
 }

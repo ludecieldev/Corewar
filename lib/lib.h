@@ -33,11 +33,12 @@ char *my_strcat(char *dest, char const *src);
 int my_strcmp(char const *s1, char const *s2);
 char *my_strcpy(char *dest, char const *src);
 int my_strlen(char const *str);
-char *my_strdup(char *src);
+char *my_strdup(const char *src);
 char *my_revstr(char *str);
 char *my_strlowcase(char *str);
 int my_strncmp(char const *s1, char const *s2, int n);
 char *my_strncpy(char *dest, char const *src, int n);
 char *my_strupcase(char *str);
 char *my_strndup(char const *str, size_t nb);
+char *my_strncpy_dumb(char *dest, char const *src, int n);
 #endif

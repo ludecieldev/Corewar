@@ -12,6 +12,7 @@ int zjmp(corewar_t *corewar, parameter_t *param, champion_t *champ,
 {
     if (process->carry == 0)
         return 0;
-    process->pc = process->pc + param->param[0] % IDX_MOD;
+    process->pc = get_address(process->mem, process->param->pc +
+        (char)param->param[0] % IDX_MOD);
     return 0;
 }

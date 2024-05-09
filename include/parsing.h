@@ -19,6 +19,6 @@ void free_parsing(parsing_t *parse);
  * setup_corewar.c
 */
 corewar_t *setup_corewar(parsing_t *parse);
-process_t *init_process(int id, void *mem_index);
+process_t *init_process(int id, void *mem_index, corewar_t *corewar);
 
 #endif

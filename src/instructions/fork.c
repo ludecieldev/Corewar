@@ -7,9 +7,10 @@
 
 #include "../../include/corewar.h"
 
-static process_t *dup_process(process_t *to_dup, void *pc, int id)
+static process_t *dup_process(process_t *to_dup, void *pc, int id,
+    corewar_t *corewar)
 {
-    process_t *process = init_process(id, pc);
+    process_t *process = init_process(id, pc, corewar);
 
     for (int i = 0; i < REG_NUMBER; i++)
         process->reg[i] = to_dup->reg[i];
@@ -24,7 +25,8 @@ int my_fork(corewar_t *corewar, parameter_t *param, champion_t *champ,
 
     for (; champ->process[i]; i++);
     champ->process[i] = dup_process(process, process->pc +
-        param->param[0] % IDX_MOD, (int)champ->id);
+        param->param[0] % IDX_MOD, (int)champ->id, corewar);
+    champ->process_nb++;
     return 0;
 }
 
@@ -35,6 +37,7 @@ int lfork(corewar_t *corewar, parameter_t *param, champion_t *champ,
 
     for (; champ->process[i]; i++);
     champ->process[i] = dup_process(process, process->pc +
-        param->param[0], (int)champ->id);
+        param->param[0], (int)champ->id, corewar);
+    champ->process_nb++;
     return 0;
 }

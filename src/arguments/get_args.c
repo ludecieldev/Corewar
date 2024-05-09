@@ -9,22 +9,22 @@
 
 static _Bool is_dir(int param_info, int param_nb)
 {
-    if (param_nb == 1 && (param_info & P1_DIR) == P1_DIR)
+    if (param_nb == 1 && (param_info & 0b11000000) >> 6 == T_DIR)
         return 1;
-    if (param_nb == 2 && (param_info & P2_DIR) == P2_DIR)
+    if (param_nb == 2 && (param_info & 0b00110000) >> 4 == T_DIR)
         return 1;
-    if (param_nb == 1 && (param_info & P3_DIR) == P3_DIR)
+    if (param_nb == 3 && (param_info & 0b00001100) >> 2 == T_DIR)
         return 1;
     return 0;
 }
 
 static _Bool is_ind(int param_info, int param_nb)
 {
-    if (param_nb == 1 && (param_info & P1_IND) == P1_IND)
+    if (param_nb == 1 && (param_info & 0b11000000) >> 6 == 3)
         return 1;
-    if (param_nb == 2 && (param_info & P2_IND) == P2_IND)
+    if (param_nb == 2 && (param_info & 0b00110000) >> 4 == 3)
         return 1;
-    if (param_nb == 3 && (param_info & P3_IND) == P3_IND)
+    if (param_nb == 3 && (param_info & 0b00001100) >> 2 == 3)
         return 1;
     return 0;
 }
@@ -33,7 +33,7 @@ char get_param_type(int param_info, int param_nb, int instruction)
 {
     if (is_ind(param_info, param_nb))
         return T_IND;
-    if (is_dir(param_info, param_nb) && IS_2BYTES_DIR(instruction))
+    if (is_dir(param_info, param_nb) && (IS_2BYTES_DIR(instruction)))
         return T_DIR2;
     if (is_dir(param_info, param_nb))
         return T_DIR;

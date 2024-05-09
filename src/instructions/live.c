@@ -13,12 +13,11 @@ int live(corewar_t *corewar, parameter_t *param, champion_t *champ,
     for (int i = 0; i < corewar->champ_nb; i++)
         if (param->param[0] == corewar->champions[i]->id) {
             corewar->champions[i]->last_live = corewar->cycle;
-            write(1, "The player ", 11);
-            my_putnbr(param->param[0]);
-            write(1, "(", 1);
-            write(1, corewar->champions[i]->name,
-                my_strlen(corewar->champions[i]->name));
-            write(1, ") is alive.\n", 12);
+            corewar->live_nb++;
         }
+    if (corewar->live_nb == NBR_LIVE) {
+        corewar->live_nb = 0;
+        corewar->cycle_to_die -= CYCLE_DELTA;
+    }
     return 0;
 }

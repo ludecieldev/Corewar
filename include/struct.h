@@ -11,11 +11,21 @@
 
 typedef int reg_t;
 
+typedef struct parameter {
+    int instr;
+    int param[3];
+    u_char param_info;
+    void *pc;
+} parameter_t;
+
 typedef struct process {
     void *pc;
     reg_t reg[REG_NUMBER];
     _Bool carry;
     u_int sleep;
+    int pending;
+    parameter_t *param;
+    char *mem;
 } process_t;
 
 typedef struct champion {
@@ -26,6 +36,7 @@ typedef struct champion {
     u_int process_nb;
     process_t *process[50];
     size_t last_live;
+    _Bool alive;
 } champion_t;
 
 typedef struct corewar {
@@ -33,6 +44,9 @@ typedef struct corewar {
     champion_t **champions;
     size_t cycle;
     char mem[MEM_SIZE];
+    int dump_flag;
+    size_t live_nb;
+    size_t cycle_to_die;
 } corewar_t;
 
 typedef struct parsing {
@@ -40,10 +54,5 @@ typedef struct parsing {
     char *champion_path[4];
     int dump_flag;
 } parsing_t;
-
-typedef struct parameter {
-    int param[3];
-    u_char param_info;
-} parameter_t;
 
 #endif

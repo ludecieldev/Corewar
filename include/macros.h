@@ -25,6 +25,8 @@
     #define IS_2BYTES_DIR(x) x == 15 || x == 14 || (x < 13 && x > 8)
     #define IS_4BYTES_DIR(x) !(IS_2BYTES_DIR(x))
     #define HAS_SPEC(x) x != 1 && x != 9 && x != 12 && x != 15
-    #define SIZE_DIR(x) (2 * IS_2BYTES_DIR(x) + 4 * IS_4BYTES_DIR(x))
+    #define SIZE_DIR(x) (2 * (IS_2BYTES_DIR(x)) + 4 * (IS_4BYTES_DIR(x)))
+    #define PARAM_SIZE(x) (2 * (x == T_DIR2) + 1 * (x == T_REG) + 2 * \
+        (x == T_IND) + 4 * (x == T_DIR))
 
 #endif

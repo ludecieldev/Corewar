@@ -7,7 +7,7 @@
 
 #include "lib.h"
 
-char *my_strdup(char *src)
+char *my_strdup(const char *src)
 {
     char *str;
     int i = 0;
