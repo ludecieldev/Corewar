@@ -48,12 +48,14 @@ int get_arg(int param, char type, process_t *process, corewar_t *corewar)
     if (type == T_REG)
         return process->reg[(param - 1) % REG_NUMBER];
     if (type == T_IND) {
-        data = (int *)(process->pc + param % IDX_MOD);
+        data = (int *)(get_address(corewar->mem, process->pc + param %
+            IDX_MOD));
         return *data;
     }
     if (type == T_DIR)
         return param;
-    data_s = (short *)(process->pc + param % IDX_MOD);
+    data_s = (short *)(get_address(corewar->mem, process->pc + param %
+        IDX_MOD));
     return *data_s;
 }
 
@@ -66,11 +68,11 @@ int get_arg_no_mod(int param, char type, process_t *process,
     if (type == T_REG)
         return process->reg[(param - 1) % REG_NUMBER];
     if (type == T_IND) {
-        data = (int *) (process->pc + param);
+        data = (int *)(get_address(corewar->mem, process->pc + param));
         return *data;
     }
     if (type == T_DIR)
         return param;
-    data_s = (short *) (process->pc + param);
+    data_s = (short *)(get_address(corewar->mem, process->pc + param));
     return *data_s;
 }
