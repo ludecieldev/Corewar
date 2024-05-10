@@ -17,7 +17,7 @@ int add(corewar_t *corewar, parameter_t *param, champion_t *champ,
         process->carry = 1;
     else
         process->carry = 0;
-    process->reg[param->param[2] % REG_NUMBER] = arg2 + arg1;
+    process->reg[param->param[2] % REG_NUMBER - 1] = arg2 + arg1;
     return 0;
 }
 
@@ -31,6 +31,6 @@ int sub(corewar_t *corewar, parameter_t *param, champion_t *champ,
         process->carry = 1;
     else
         process->carry = 0;
-    process->reg[param->param[2] % REG_NUMBER] = arg1 - arg2;
+    process->reg[param->param[2] % REG_NUMBER - 1] = arg1 - arg2;
     return 0;
 }
