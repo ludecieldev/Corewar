@@ -53,7 +53,7 @@ static champion_t *init_champ(void)
     champ->alive = 1;
     champ->last_live = 0;
     champ->process_nb = 1;
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < MAX_FORK; i++)
         champ->process[i] = 0;
     return champ;
 }

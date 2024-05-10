@@ -28,13 +28,14 @@ typedef struct process {
     char *mem;
 } process_t;
 
+    #define MAX_FORK 100
 typedef struct champion {
     u_int id;
     char name[PROG_NAME_LENGTH + 1];
     char *champ_code;
     size_t champ_code_len;
     u_int process_nb;
-    process_t *process[50];
+    process_t *process[MAX_FORK];
     size_t last_live;
     _Bool alive;
 } champion_t;
