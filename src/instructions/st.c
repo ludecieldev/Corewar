@@ -17,7 +17,7 @@ int st_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
         return 0;
     }
     for (int i = 0; i < 4; i++)
-        *((char *)(get_address(process->mem, process->pc +
+        *((char *)(get_address(process->mem, process->param->pc +
             param->param[1] % IDX_MOD + i))) =
             ((char *)&arg)[i];
     return 0;

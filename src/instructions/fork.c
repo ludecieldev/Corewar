@@ -27,7 +27,7 @@ int my_fork(corewar_t *corewar, parameter_t *param, champion_t *champ,
     if (champ->process_nb == MAX_FORK)
         return 0;
     for (; champ->process[i]; i++);
-    champ->process[i] = dup_process(process, process->pc +
+    champ->process[i] = dup_process(process, process->param->pc +
         param->param[0] % IDX_MOD, (int)champ->id, corewar);
     champ->process_nb++;
     return 0;
@@ -41,7 +41,7 @@ int lfork(corewar_t *corewar, parameter_t *param, champion_t *champ,
     if (champ->process_nb == MAX_FORK)
         return 0;
     for (; champ->process[i]; i++);
-    champ->process[i] = dup_process(process, process->pc +
+    champ->process[i] = dup_process(process, process->param->pc +
         param->param[0], (int)champ->id, corewar);
     champ->process_nb++;
     return 0;

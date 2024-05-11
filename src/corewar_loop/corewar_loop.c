@@ -46,7 +46,7 @@ static void load_instruction(process_t *process)
     char *mem = get_address(process->mem, process->pc);
 
     process->param->pc = get_address(process->mem, process->pc);
-    if (*mem <= 0 || *mem > 16) {
+    if (mem < process->mem || *mem <= 0 || *mem > 16) {
         process->pc++;
         return;
     }
