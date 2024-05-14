@@ -13,6 +13,8 @@ int ld_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
     int arg = get_arg(param->param[0], get_param_type(param->param_info,
         1, 2), process, corewar);
 
+    if (param->param[1] % REG_NUMBER - 1 < 0)
+        return 0;
     process->reg[param->param[1] % REG_NUMBER - 1] = arg;
     if (arg == 0)
         process->carry = 1;
@@ -27,6 +29,8 @@ int lld(corewar_t *corewar, parameter_t *param, champion_t *champ,
     int arg = get_arg_no_mod(param->param[0],
         get_param_type(param->param_info, 1, 2), process, corewar);
 
+    if (param->param[1] % REG_NUMBER - 1 < 0)
+        return 0;
     process->reg[param->param[1] % REG_NUMBER - 1] = arg;
     if (arg == 0)
         process->carry = 1;

@@ -44,7 +44,7 @@ typedef struct corewar {
     u_int champ_nb;
     champion_t **champions;
     size_t cycle;
-    char mem[MEM_SIZE];
+    char mem[MEM_SIZE + 10];
     int dump_flag;
     size_t live_nb;
     size_t cycle_to_die;

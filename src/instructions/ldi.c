@@ -20,6 +20,8 @@ int ldi(corewar_t *corewar, parameter_t *param, champion_t *champ,
         process->carry = 1;
     else
         process->carry = 0;
+    if (param->param[2] % REG_NUMBER - 1 < 0)
+        return 0;
     process->reg[param->param[2] % REG_NUMBER - 1] = result;
     return 0;
 }
@@ -37,6 +39,8 @@ int lldi(corewar_t *corewar, parameter_t *param, champion_t *champ,
         process->carry = 1;
     else
         process->carry = 0;
+    if (param->param[2] % REG_NUMBER - 1 < 0)
+        return 0;
     process->reg[param->param[2] % REG_NUMBER - 1] = result;
     return 0;
 }

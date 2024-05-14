@@ -18,7 +18,7 @@ static corewar_t *init_corewar(parsing_t *parse)
     corewar->cycle = 0;
     corewar->cycle_to_die = CYCLE_TO_DIE;
     corewar->live_nb = 0;
-    for (int i = 0; i < MEM_SIZE; i++)
+    for (int i = 0; i < MEM_SIZE + 10; i++)
         corewar->mem[i] = 0;
     return corewar;
 }
