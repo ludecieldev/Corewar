@@ -7,8 +7,8 @@
 
 #include "../../include/corewar.h"
 
-int add(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int add(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg1 = get_arg(param->param[0], REG_T, process, corewar);
     int arg2 = get_arg(param->param[1], REG_T, process, corewar);
@@ -23,8 +23,8 @@ int add(corewar_t *corewar, parameter_t *param, champion_t *champ,
     return 0;
 }
 
-int sub(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int sub(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg1 = get_arg(param->param[0], REG_T, process, corewar);
     int arg2 = get_arg(param->param[1], REG_T, process, corewar);

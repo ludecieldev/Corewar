@@ -7,8 +7,8 @@
 
 #include "../../include/corewar.h"
 
-int and_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int and_inst(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg1 = get_arg(param->param[0], get_param_type(param->param_info, 1,
         6), process, corewar);
@@ -26,8 +26,8 @@ int and_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
     return 0;
 }
 
-int or_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int or_inst(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg1 = get_arg(param->param[0], get_param_type(param->param_info, 1,
         7), process, corewar);
@@ -45,8 +45,8 @@ int or_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
     return 0;
 }
 
-int xor_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int xor_inst(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg1 = get_arg(param->param[0], get_param_type(param->param_info, 1,
         8), process, corewar);

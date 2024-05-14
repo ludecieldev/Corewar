@@ -7,8 +7,8 @@
 
 #include "../../include/corewar.h"
 
-int ldi(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int ldi(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg1 = get_arg(param->param[0], get_param_type(param->param_info,
         1, 10), process, corewar);
@@ -26,8 +26,8 @@ int ldi(corewar_t *corewar, parameter_t *param, champion_t *champ,
     return 0;
 }
 
-int lldi(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int lldi(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg1 = get_arg_no_mod(param->param[0],
         get_param_type(param->param_info, 1, 10), process, corewar);

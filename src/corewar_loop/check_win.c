@@ -11,7 +11,7 @@ _Bool is_win(corewar_t *corewar)
 {
     int alive_count = 0;
 
-    for (int i = 0; i < corewar->champ_nb; i++) {
+    for (u_int i = 0; i < corewar->champ_nb; i++) {
         if (corewar->champions[i]->alive)
             alive_count++;
     }

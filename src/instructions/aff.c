@@ -7,8 +7,8 @@
 
 #include "../../include/corewar.h"
 
-int aff(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int aff(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg = get_arg(param->param[0], REG_T, process, corewar) % 256;
 

@@ -7,11 +7,12 @@
 
 #include "../../include/corewar.h"
 
-int live(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int live(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ,
+    __attribute_maybe_unused__ process_t *process)
 {
-    for (int i = 0; i < corewar->champ_nb; i++)
-        if (param->param[0] == corewar->champions[i]->id) {
+    for (u_int i = 0; i < corewar->champ_nb; i++)
+        if (param->param[0] == (int)corewar->champions[i]->id) {
             corewar->champions[i]->last_live = corewar->cycle;
             corewar->live_nb++;
             write(1, "The player ", 11);

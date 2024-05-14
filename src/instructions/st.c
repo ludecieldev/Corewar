@@ -7,8 +7,8 @@
 
 #include "../../include/corewar.h"
 
-int st_inst(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int st_inst(corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int arg = get_arg(param->param[0], REG_T, process, corewar);
 

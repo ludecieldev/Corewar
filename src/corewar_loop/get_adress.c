@@ -9,5 +9,7 @@
 
 char *get_address(char *mem, char const *address)
 {
+    while (address < mem)
+        address += (long)mem;
     return mem + ((address - mem) % MEM_SIZE);
 }

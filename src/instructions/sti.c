@@ -7,8 +7,8 @@
 
 #include "../../include/corewar.h"
 
-int sti(corewar_t *corewar, parameter_t *param, champion_t *champ,
-    process_t *process)
+int sti(__attribute_maybe_unused__ corewar_t *corewar, parameter_t *param,
+    __attribute_maybe_unused__ champion_t *champ, process_t *process)
 {
     int result = param->param[1] + param->param[2];
 

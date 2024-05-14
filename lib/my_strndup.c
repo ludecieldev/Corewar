@@ -34,7 +34,7 @@ char *my_strndup(char const *str, size_t nb)
         len = nb;
     ret = malloc(len + 1);
     ret[len] = 0;
-    for (int i = 0; i < len; i++)
+    for (size_t i = 0; i < len; i++)
         ret[i] = str[i];
     return ret;
 }
