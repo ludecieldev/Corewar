@@ -5,8 +5,8 @@
 ** corewar_loop.c
 */
 
-#include "../../include/corewar.h"
-#include "../../include/instruction_tab.h"
+#include "corewar.h"
+#include "instruction_tab.h"
 
 static void kill_dead_player(corewar_t *corewar, champion_t *champ)
 {

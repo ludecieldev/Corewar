@@ -5,7 +5,7 @@
 ** st.c
 */
 
-#include "../../include/corewar.h"
+#include "corewar.h"
 
 int st_inst(corewar_t *corewar, parameter_t *param,
     __attribute_maybe_unused__ champion_t *champ, process_t *process)

@@ -5,7 +5,7 @@
 ** add_sub.c
 */
 
-#include "../../include/corewar.h"
+#include "corewar.h"
 
 int add(corewar_t *corewar, parameter_t *param,
     __attribute_maybe_unused__ champion_t *champ, process_t *process)

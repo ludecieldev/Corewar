@@ -5,7 +5,7 @@
 ** main.c
 */
 
-#include "../include/corewar.h"
+#include "corewar.h"
 
 static void my_putnbr_hex(int nbr)
 {

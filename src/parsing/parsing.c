@@ -5,7 +5,7 @@
 ** parsing.c
 */
 
-#include "../../include/corewar.h"
+#include "corewar.h"
 
 void free_parsing(parsing_t *parse)
 {

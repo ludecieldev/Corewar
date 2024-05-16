@@ -5,7 +5,7 @@
 ** get_args.c
 */
 
-#include "../../include/corewar.h"
+#include "corewar.h"
 
 static _Bool is_dir(int param_info, int param_nb)
 {

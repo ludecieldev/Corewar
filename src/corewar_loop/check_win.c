@@ -5,7 +5,7 @@
 ** check_win.c
 */
 
-#include "../../include/corewar.h"
+#include "corewar.h"
 
 _Bool is_win(corewar_t *corewar)
 {

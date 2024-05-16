@@ -5,7 +5,7 @@
 ** get_champ_code.c
 */
 
-#include "../../include/corewar.h"
+#include "corewar.h"
 
 static corewar_t *init_corewar(parsing_t *parse)
 {

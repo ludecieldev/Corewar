@@ -5,7 +5,7 @@
 ** fork.c
 */
 
-#include "../../include/corewar.h"
+#include "corewar.h"
 
 static process_t *dup_process(process_t *to_dup, void *pc, int id,
     corewar_t *corewar)

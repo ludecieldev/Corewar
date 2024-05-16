@@ -5,7 +5,7 @@
 ** get_adress.c
 */
 
-#include "../../include/corewar.h"
+#include "corewar.h"
 
 char *get_address(char *mem, char const *address)
 {
