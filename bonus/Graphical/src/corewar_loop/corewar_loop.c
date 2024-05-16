@@ -7,6 +7,8 @@
 
 #include "corewar.h"
 #include "instruction_tab.h"
+#include "corewar_loop.h"
+#include "memory_meta.h"
 
 static void kill_dead_player(corewar_t *corewar, champion_t *champ)
 {
@@ -88,11 +90,12 @@ static void display_winner(long max_champ, char *max_champ_name)
     write(1, ")has won.\n", 10);
 }
 
-void corewar_loop(corewar_t *corewar)
+void corewar_loop(corewar_t *corewar, memory_meta_t *meta)
 {
     size_t max = 0;
     size_t max_champ = 0;
-
+    // Create a new window for the memory dump
+    WINDOW *win = newwin(35, 70, 1, 1);  // Adjust the size and position as needed
     while (!is_win(corewar) && corewar->cycle != (size_t)corewar->dump_flag) {
         for (u_int i = 0; i < corewar->champ_nb; i++) {
             kill_dead_player(corewar, corewar->champions[i]);
@@ -100,13 +103,18 @@ void corewar_loop(corewar_t *corewar)
             update_champ(corewar->champions[i]);
         }
         corewar->cycle++;
+        // Update memory dump display
+        dump_mem(win, corewar->mem, meta);
+        napms(100); // Pause to control update speed (e.g., 100 ms)
     }
-    if (corewar->dump_flag != -1)
-        dump_mem(corewar->mem);
-    for (size_t i = 0; i < corewar->champ_nb; i++)
+    for (size_t i = 0; i < corewar->champ_nb; i++) {
         if (corewar->champions[i]->last_live > max) {
             max = corewar->champions[i]->last_live;
             max_champ = corewar->champions[i]->id;
         }
+    }
     display_winner((long)max_champ, corewar->champions[max_champ]->name);
+    // Delete the window
+    delwin(win);
 }
+
