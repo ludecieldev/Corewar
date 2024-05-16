@@ -50,7 +50,8 @@ DEPS    =   $(OBJ:.o=.d)
 
 NAME    =   corewar
 
-CFLAGS  +=  -W -Wall -Wextra -I./include -lncurses
+CFLAGS  +=  -W -Wall -Wextra -I./include
+LDFLAGS = -lncurses
 VALFLAG += -g3
 
 CYAN    =   \033[0;36m
@@ -72,7 +73,7 @@ start_compilation:
 ${CYAN}Started compilation of ${RED}$(TOTAL_FILES) files${NC}\n"
 
 $(NAME): $(OBJ)
-	@gcc -o $(NAME) $(OBJ) $(CFLAGS) $(VALFLAG)
+	@gcc -o $(NAME) $(OBJ) $(CFLAGS) $(VALFLAG) $(LDFLAGS)
 	@printf "${YELLOW}Lud's Makefile | ${BOLD_GREEN}Compilation done!${NC}\n"
 
 %.o: %.c
