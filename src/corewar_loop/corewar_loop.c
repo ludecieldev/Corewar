@@ -14,19 +14,6 @@ static void kill_dead_player(corewar_t *corewar, champion_t *champ)
         champ->alive = 0;
 }
 
-static void run_instruction(corewar_t *corewar, champion_t *champ)
-{
-    if (champ->alive == 0)
-        return;
-    for (u_int i = 0; i < champ->process_nb; i++) {
-        if (champ->process[i]->pending && champ->process[i]->sleep == 0) {
-            instructions[champ->process[i]->pending](corewar,
-                champ->process[i]->param, champ, champ->process[i]);
-            champ->process[i]->pending = 0;
-        }
-    }
-}
-
 static void load_param(process_t *process)
 {
     process->param->param_info = *((u_char *)get_address(process->mem,
@@ -79,6 +66,20 @@ static void update_champ(champion_t *champ)
     }
 }
 
+static void run_instruction(corewar_t *corewar, champion_t *champ)
+{
+    if (champ->alive == 0)
+        return;
+    for (u_int i = 0; i < champ->process_nb; i++) {
+        if (champ->process[i]->pending && champ->process[i]->sleep == 0) {
+            instructions[champ->process[i]->pending](corewar,
+                champ->process[i]->param, champ, champ->process[i]);
+            champ->process[i]->pending = 0;
+        }
+    }
+    update_champ(champ);
+}
+
 static void display_winner(long max_champ, char *max_champ_name)
 {
     write(1, "The player ", 11);
@@ -92,21 +93,22 @@ void corewar_loop(corewar_t *corewar)
 {
     size_t max = 0;
     size_t max_champ = 0;
+    char *winner;
 
     while (!is_win(corewar) && corewar->cycle != (size_t)corewar->dump_flag) {
         for (u_int i = 0; i < corewar->champ_nb; i++) {
             kill_dead_player(corewar, corewar->champions[i]);
             run_instruction(corewar, corewar->champions[i]);
-            update_champ(corewar->champions[i]);
         }
         corewar->cycle++;
     }
     if (corewar->dump_flag != -1)
         dump_mem(corewar->mem);
     for (size_t i = 0; i < corewar->champ_nb; i++)
-        if (corewar->champions[i]->last_live > max) {
+        if (corewar->champions[i]->last_live >= max) {
             max = corewar->champions[i]->last_live;
             max_champ = corewar->champions[i]->id;
+            winner = corewar->champions[i]->name;
         }
-    display_winner((long)max_champ, corewar->champions[max_champ]->name);
+    display_winner((long)max_champ, winner);
 }

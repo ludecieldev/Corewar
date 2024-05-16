@@ -53,6 +53,8 @@ typedef struct corewar {
 typedef struct parsing {
     int error;
     char *champion_path[4];
+    int champions_id[4];
+    int champions_start[4];
     int dump_flag;
 } parsing_t;
 

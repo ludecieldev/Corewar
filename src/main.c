@@ -62,6 +62,20 @@ void dump_mem(char *mem)
     }
 }
 
+static void free_corewar(corewar_t *corewar)
+{
+    for (u_int i = 0; i < corewar->champ_nb; i++) {
+        for (u_int j = 0; j < corewar->champions[i]->process_nb; j++) {
+            free(corewar->champions[i]->process[j]->param);
+            free(corewar->champions[i]->process[j]);
+        }
+        free(corewar->champions[i]->champ_code);
+        free(corewar->champions[i]);
+    }
+    free(corewar->champions);
+    free(corewar);
+}
+
 int main(int ac, char **av)
 {
     parsing_t *parse = parsing(ac, av);
@@ -77,6 +91,7 @@ int main(int ac, char **av)
         return 84;
     }
     corewar_loop(corewar);
+    free_corewar(corewar);
     free_parsing(parse);
     return 0;
 }
