@@ -94,8 +94,7 @@ void corewar_loop(corewar_t *corewar, memory_meta_t *meta)
 {
     size_t max = 0;
     size_t max_champ = 0;
-    // Create a new window for the memory dump
-    WINDOW *win = newwin(35, 70, 1, 1);  // Adjust the size and position as needed
+    WINDOW *win = newwin(35, 70, 1, 1);
     while (!is_win(corewar) && corewar->cycle != (size_t)corewar->dump_flag) {
         for (u_int i = 0; i < corewar->champ_nb; i++) {
             kill_dead_player(corewar, corewar->champions[i]);
@@ -103,9 +102,8 @@ void corewar_loop(corewar_t *corewar, memory_meta_t *meta)
             update_champ(corewar->champions[i]);
         }
         corewar->cycle++;
-        // Update memory dump display
         dump_mem(win, corewar->mem, meta);
-        napms(100); // Pause to control update speed (e.g., 100 ms)
+        napms(100);
     }
     for (size_t i = 0; i < corewar->champ_nb; i++) {
         if (corewar->champions[i]->last_live > max) {
@@ -114,7 +112,6 @@ void corewar_loop(corewar_t *corewar, memory_meta_t *meta)
         }
     }
     display_winner((long)max_champ, corewar->champions[max_champ]->name);
-    // Delete the window
     delwin(win);
 }
 
