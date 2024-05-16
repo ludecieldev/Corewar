@@ -6,6 +6,7 @@
 */
 
 #include "corewar.h"
+#include "memory_meta.h"
 
 static void my_putnbr_hex(int nbr)
 {
@@ -48,24 +49,52 @@ static void hex_print(unsigned char c)
     write(1, str, 2);
 }
 
-void dump_mem(char *mem)
+int determine_color(memory_meta_t meta) {
+    // Simple example: color based on owner
+    return meta.owner_id + 1;  // Assuming color pair IDs match owner IDs
+}
+
+void dump_mem(WINDOW *win, char *mem, memory_meta_t *meta)
 {
+    werase(win);
+    int line = 1;
+    int col = 1;
     for (int i = 0; i < MEM_SIZE; i++) {
         if (i % 32 == 0) {
-            my_putnbr_hex(i);
-            write(1, "\t:", 2);
+            mvwprintw(win, line++, 1, "%04x:", i);
+            col = 10;
         }
-        write(1, " ", 1);
-        hex_print(mem[i]);
-        if ((i + 1) % 32 == 0)
-            write(1, "\n", 1);
+        int color_pair = determine_color(meta[i]);
+        wattron(win, COLOR_PAIR(color_pair));
+        wprintw(win, " %02x", (unsigned char)mem[i]);
+        wattroff(win, COLOR_PAIR(color_pair));
+        col += 3;
+
+        if (col >= 70) {
+            line++;
+            col = 1;
+        }
     }
+    wrefresh(win);
+}
+
+memory_meta_t init_meta(void)
+{
+    memory_meta_t meta[MEM_SIZE];
+
+    for (int i = 0; i < MEM_SIZE; i++) {
+        meta[i].owner_id = -1;
+        meta[i].last_access_cycle = 0;
+        meta[i].last_access_type = 0;
+    }
+    return *meta;
 }
 
 int main(int ac, char **av)
 {
     parsing_t *parse = parsing(ac, av);
     corewar_t *corewar;
+    memory_meta_t meta = init_meta();
 
     init_ncurses();
     if (parse->error == 84) {
@@ -77,7 +106,7 @@ int main(int ac, char **av)
         free_parsing(parse);
         return 84;
     }
-    corewar_loop(corewar);
+    corewar_loop(corewar, &meta);
     free_parsing(parse);
     endwin();
     return 0;
