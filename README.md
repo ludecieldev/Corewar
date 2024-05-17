@@ -120,6 +120,7 @@ corewar/
 `parsing` :
 - `parsing.c` : contains functions for initializing, parsing, and freeing the command-line arguments. The free_parsing function releases memory allocated for parsed data, the init_parsing function initializes the parsing structure, and the parsing function processes command-line arguments to set up the game's parameters, including champion file paths and the dump flag.
 - `setup_corewar.c` : contains functions for initializing and setting up the Corewar game state, including the corewar environment, processes, and champions. The init_corewar function initializes the main game structure, init_process initializes a new process, init_champ initializes a champion, and get_champ loads champion data from a file. The setup_corewar function orchestrates the overall setup, loading champions into memory and preparing the game for execution.
+
 `main.c` : contains the main entry point for the Corewar project. It includes functions to print numbers and memory contents in hexadecimal format (my_putnbr_hex, hex_print, dump_mem), and the main function to parse command-line arguments, set up the corewar environment, and execute the main game loop. If errors occur during parsing or setup, appropriate cleanup is performed.
 
 `op.c` : defines an array of operation descriptors (op_tab). Each entry in the array represents an operation with its name, number of arguments, argument types, opcode, number of cycles it takes to execute, and a description. This array is used by the Corewar interpreter to handle various instructions during the game.
